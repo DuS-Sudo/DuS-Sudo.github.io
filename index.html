@@ -3,182 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Tech Portfolio</title>
+    <title>Digital Portfolio</title>
+    <!-- Importing a sleek, tech-forward font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* Color Palette & Base Styles */
         :root {
-            --bg-color: #0f0f13;
-            --surface-color: #1a1a24;
-            --accent-color: #ff3366; /* A dynamic neon pink/red for gaming vibes */
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b5;
+            --bg-dark: #0b0c10;
+            --bg-panel: #1f2833;
+            --accent-bright: #66fcf1;
+            --accent-semi: #45a29e;
+            --text-light: #c5c6c7;
+            --text-white: #ffffff;
         }
 
-        /* HCI Principle: Smooth scrolling interaction */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Sticky Navigation */
+        h1, h2, h3 { font-family: 'Rajdhani', sans-serif; color: var(--text-white); }
+
+        /* Navigation */
         nav {
-            background-color: rgba(26, 26, 36, 0.95);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed; /* Keeps nav at the top */
+            background-color: rgba(11, 12, 16, 0.9);
+            padding: 15px 5%;
+            position: fixed;
             width: 100%;
             top: 0;
             box-sizing: border-box;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--bg-panel);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
+        nav a {
+            color: var(--text-light);
             text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+        nav a:hover { color: var(--accent-bright); }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Section Formatting */
+        /* General Section Formatting */
         section {
-            min-height: 100vh; /* Makes each section take up the full screen height */
-            padding: 100px 10% 50px; /* Top padding offsets the fixed nav bar */
+            padding: 120px 10% 80px;
+            min-height: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-bright);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 5px solid var(--accent-semi);
+            padding-left: 15px;
+        }
+
+        /* Hero / Personal Details */
+        #hero {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: radial-gradient(circle at 50% 50%, #1f2833 0%, #0b0c10 70%);
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--surface-color);
-            padding-bottom: 10px;
-        }
-
-        /* Card Grid for Projects */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        #hero h1 { font-size: 4.5rem; margin: 0; }
+        #hero h2 { font-size: 2rem; color: var(--accent-semi); margin-top: 5px; }
+        
+        .contact-pills {
+            display: flex;
+            gap: 15px;
             margin-top: 30px;
         }
 
-        .card {
-            background-color: var(--surface-color);
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .pill {
+            background-color: transparent;
+            border: 1px solid var(--accent-semi);
+            color: var(--accent-bright);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
 
-        .card:hover {
+        .pill:hover { background-color: var(--accent-semi); color: var(--bg-dark); }
+
+        /* Two-Column Layout for Qualities & Academics */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .split-section { grid-template-columns: 1fr; }
+        }
+
+        /* Cards */
+        .panel {
+            background-color: var(--bg-panel);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            border-top: 3px solid transparent;
+        }
+
+        .panel:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
+            border-top: 3px solid var(--accent-bright);
         }
 
-        /* Alternate background for visual pacing */
-        .alt-bg {
-            background-color: var(--surface-color);
+        .tag {
+            display: inline-block;
+            background-color: rgba(69, 162, 158, 0.2);
+            color: var(--accent-bright);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin: 5px 5px 0 0;
         }
-        .alt-bg .card {
-            background-color: var(--bg-color);
+
+        /* Work Grid */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav>
-        <a href="#home" class="logo">DevPortfolio</a>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#academics">Academics</a>
-            <a href="#games">Games</a>
-            <a href="#assets">3D Assets</a>
-            <a href="#audio">Audio</a>
-        </div>
+        <a href="#hero">Profile</a>
+        <a href="#about-academic">Background</a>
+        <a href="#work">Work Produced</a>
     </nav>
 
-    <!-- Section 1: Home/Hero -->
-    <section id="home">
-        <h1 style="font-size: 4rem; margin-bottom: 10px;">Building Worlds.</h1>
-        <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px;">
-            A Game Technology student specializing in engine mechanics, 3D modeling, and interactive media.
+    <!-- 1. Personal Details / Hero -->
+    <section id="hero">
+        <h1>Your Name</h1>
+        <h2>Game Technology Developer</h2>
+        <p style="max-width: 600px; font-size: 1.1rem; margin-top: 20px;">
+            Bridging the gap between technical programming and creative design. Specializing in low-level graphics APIs, engine architecture, and 3D modeling.
         </p>
-    </section>
-
-    <!-- Section 2: About (Personal Qualities) -->
-    <section id="about" class="alt-bg">
-        <h2>About Me</h2>
-        <p>I blend technical programming with creative artistry. When I'm not debugging C++ or optimizing rendering pipelines, I'm analyzing game design loops or working on jazz-pop musical compositions.</p>
-        <p><strong>Core Strengths:</strong> Problem-solving, cross-disciplinary workflow (Audio/Visual/Code), and rapid prototyping.</p>
-    </section>
-
-    <!-- Section 3: Academics -->
-    <section id="academics">
-        <h2>Academic History</h2>
-        <div class="card">
-            <h3>Diploma in Game Technology</h3>
-            <p><strong>UTeM (Universiti Teknikal Malaysia Melaka)</strong></p>
-            <p>Focusing on low-level graphics APIs like OpenGL, engine architecture (Unity/UE5), and Human-Computer Interaction.</p>
+        <div class="contact-pills">
+            <a href="mailto:your.email@example.com" class="pill">Email Me</a>
+            <a href="#" class="pill">GitHub</a>
+            <a href="#" class="pill">LinkedIn</a>
         </div>
     </section>
 
-    <!-- Section 4: Game Projects -->
-    <section id="games" class="alt-bg">
-        <h2>Game Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Hantu Teh O'</h3>
-                <p>A 2D platformer built entirely with OpenGL. Features custom UI elements, state machines, and precise collision mechanics.</p>
+    <!-- 2 & 3. Personal Qualities and Academic History -->
+    <section id="about-academic" style="background-color: #12151c;">
+        <h2 class="section-title">Background & Skills</h2>
+        <div class="split-section">
+            
+            <!-- Personal Qualities -->
+            <div class="panel">
+                <h3 style="font-size: 1.8rem; margin-top: 0;">Personal Qualities</h3>
+                <p>I thrive in environments that require both analytical problem-solving and artistic intuition. My workflow frequently moves across different disciplines, allowing me to understand the entire pipeline of digital creation.</p>
+                <div style="margin-top: 20px;">
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">Rapid Prototyping</span>
+                    <span class="tag">Audio/Visual Coordination</span>
+                    <span class="tag">Self-Driven Learning</span>
+                </div>
             </div>
-            <div class="card">
-                <h3>Current Engine Work</h3>
-                <p>Exploring high-fidelity rendering and optimization workflows using Unreal Engine 5.</p>
+
+            <!-- Academic History -->
+            <div class="panel">
+                <h3 style="font-size: 1.8rem; margin-top: 0;">Academic History</h3>
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: var(--accent-bright); margin-bottom: 5px;">Diploma in Game Technology</h4>
+                    <span style="color: var(--accent-semi); font-weight: bold;">UTeM (Universiti Teknikal Malaysia Melaka)</span>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Focused heavily on Human-Computer Interaction, 3D Mathematics, and rendering techniques.</p>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Section 5: 3D Assets -->
-    <section id="assets">
-        <h2>3D Assets & Modeling</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Viking Prop Set</h3>
-                <p>Modeled and textured a historically-inspired Viking helmet and war hammer in Blender. Focused on clean loop cuts and smoothed edges for engine-ready imports.</p>
+    <!-- 4. Work Produced -->
+    <section id="work">
+        <h2 class="section-title">Work Produced</h2>
+        <div class="work-grid">
+            
+            <div class="panel">
+                <h3 style="color: var(--accent-bright);">Hantu Teh O'</h3>
+                <p style="font-size: 0.9rem; color: var(--accent-semi);">2D OpenGL Platformer</p>
+                <p>Engineered entirely using OpenGL. Developed state machines, custom UI elements, and precise collision detection mechanics from scratch without relying on a commercial engine.</p>
+                <span class="tag">C++</span> <span class="tag">OpenGL</span>
             </div>
-        </div>
-    </section>
 
-    <!-- Section 6: Audio & Miscellaneous -->
-    <section id="audio" class="alt-bg">
-        <h2>Audio & Music Production</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>"Ghost in your stories"</h3>
-                <p>An original jazz-pop guitar track. Demonstrates understanding of rhythm, pacing, and audio composition—skills that directly translate to game sound design.</p>
+            <div class="panel">
+                <h3 style="color: var(--accent-bright);">Viking Prop Set</h3>
+                <p style="font-size: 0.9rem; color: var(--accent-semi);">3D Hard Surface Modeling</p>
+                <p>Modeled and textured a Viking helmet and war hammer. Utilized clean topology, strict loop cuts, and edge smoothing to ensure assets are optimized for real-time engine rendering.</p>
+                <span class="tag">Blender</span> <span class="tag">Texturing</span>
             </div>
+
+            <div class="panel">
+                <h3 style="color: var(--accent-bright);">Interactive Audio Integration</h3>
+                <p style="font-size: 0.9rem; color: var(--accent-semi);">Music & Sound Design</p>
+                <p>Composed and structured musical pieces, including an original jazz-pop track titled "Ghost in your stories", to study rhythm, pacing, and emotional feedback in multimedia experiences.</p>
+                <span class="tag">Audio Production</span> <span class="tag">Composition</span>
+            </div>
+
         </div>
     </section>
 
