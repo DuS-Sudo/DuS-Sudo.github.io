@@ -5,34 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Tech Portfolio</title>
     <style>
-        /* HCI Principle: Consistency & Standards (CSS Variables for theming) */
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --accent-color: #00f3ff;
+            --bg-color: #0f0f13;
+            --surface-color: #1a1a24;
+            --accent-color: #ff3366; /* A dynamic neon pink/red for gaming vibes */
             --text-primary: #ffffff;
-            --text-secondary: #b3b3b3;
+            --text-secondary: #a0a0b5;
+        }
+
+        /* HCI Principle: Smooth scrolling interaction */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
         }
 
-        /* Navigation: Clear Information Structure */
+        /* Sticky Navigation */
         nav {
-            background-color: var(--surface-color);
+            background-color: rgba(26, 26, 36, 0.95);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            position: sticky;
+            position: fixed; /* Keeps nav at the top */
+            width: 100%;
             top: 0;
-            z-index: 100;
+            box-sizing: border-box;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .logo {
@@ -46,113 +52,133 @@
             color: var(--text-primary);
             text-decoration: none;
             margin-left: 20px;
-            transition: color 0.3s ease; /* Interaction Style: Hover feedback */
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: var(--accent-color);
         }
 
-        /* Hero Section: Visual Hierarchy */
-        .hero {
-            height: 80vh;
+        /* Section Formatting */
+        section {
+            min-height: 100vh; /* Makes each section take up the full screen height */
+            padding: 100px 10% 50px; /* Top padding offsets the fixed nav bar */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 30px;
-        }
-
-        /* Call to Action Button: Affordance */
-        .btn {
-            background-color: transparent;
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             color: var(--accent-color);
-            border: 2px solid var(--accent-color);
-            padding: 10px 25px;
-            font-size: 1.1rem;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border-bottom: 2px solid var(--surface-color);
+            padding-bottom: 10px;
         }
 
-        .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-color); /* Added value: Glow effect */
-        }
-
-        /* Portfolio Grid: Gestalt Principle of Proximity */
-        .section-title {
-            text-align: center;
-            margin: 40px 0 20px;
-        }
-
+        /* Card Grid for Projects */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            padding: 20px 10%;
+            margin-top: 30px;
         }
 
         .card {
             background-color: var(--surface-color);
             border-radius: 8px;
             padding: 20px;
-            transition: transform 0.3s ease; /* Interaction: System feedback */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
+        }
+
+        /* Alternate background for visual pacing */
+        .alt-bg {
+            background-color: var(--surface-color);
+        }
+        .alt-bg .card {
+            background-color: var(--bg-color);
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <nav>
-        <a href="index.html" class="logo">MyPortfolio</a>
+        <a href="#home" class="logo">DevPortfolio</a>
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About Me</a>
-            <a href="academic.html">Academic</a>
-            <a href="games.html">Game Projects</a>
-            <a href="assets.html">3D Assets</a>
-            <a href="contact.html">Contact</a>
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#games">Games</a>
+            <a href="#assets">3D Assets</a>
+            <a href="#audio">Audio</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Hi, I'm a Game Technology Developer.</h1>
-        <p>Specializing in 3D modeling, engine development, and creating immersive digital experiences.</p>
-        <a href="games.html" class="btn">View My Projects</a>
+    <!-- Section 1: Home/Hero -->
+    <section id="home">
+        <h1 style="font-size: 4rem; margin-bottom: 10px;">Building Worlds.</h1>
+        <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px;">
+            A Game Technology student specializing in engine mechanics, 3D modeling, and interactive media.
+        </p>
     </section>
 
-    <h2 class="section-title">Featured Work</h2>
-    <section class="grid">
+    <!-- Section 2: About (Personal Qualities) -->
+    <section id="about" class="alt-bg">
+        <h2>About Me</h2>
+        <p>I blend technical programming with creative artistry. When I'm not debugging C++ or optimizing rendering pipelines, I'm analyzing game design loops or working on jazz-pop musical compositions.</p>
+        <p><strong>Core Strengths:</strong> Problem-solving, cross-disciplinary workflow (Audio/Visual/Code), and rapid prototyping.</p>
+    </section>
+
+    <!-- Section 3: Academics -->
+    <section id="academics">
+        <h2>Academic History</h2>
         <div class="card">
-            <h3>Hantu Teh O'</h3>
-            <p>An OpenGL platformer featuring custom particle systems, state machines, and ghost-themed mechanics.</p>
+            <h3>Diploma in Game Technology</h3>
+            <p><strong>UTeM (Universiti Teknikal Malaysia Melaka)</strong></p>
+            <p>Focusing on low-level graphics APIs like OpenGL, engine architecture (Unity/UE5), and Human-Computer Interaction.</p>
         </div>
-        <div class="card">
-            <h3>Hard Surface Modeling</h3>
-            <p>Optimized 3D vehicle and tool assets modeled and rigged in Blender for game engine integration.</p>
+    </section>
+
+    <!-- Section 4: Game Projects -->
+    <section id="games" class="alt-bg">
+        <h2>Game Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Hantu Teh O'</h3>
+                <p>A 2D platformer built entirely with OpenGL. Features custom UI elements, state machines, and precise collision mechanics.</p>
+            </div>
+            <div class="card">
+                <h3>Current Engine Work</h3>
+                <p>Exploring high-fidelity rendering and optimization workflows using Unreal Engine 5.</p>
+            </div>
         </div>
-        <div class="card">
-            <h3>Audio & Video Production</h3>
-            <p>Original tracks and sound design utilizing After Effects and Audacity to enhance gameplay feedback.</p>
+    </section>
+
+    <!-- Section 5: 3D Assets -->
+    <section id="assets">
+        <h2>3D Assets & Modeling</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Viking Prop Set</h3>
+                <p>Modeled and textured a historically-inspired Viking helmet and war hammer in Blender. Focused on clean loop cuts and smoothed edges for engine-ready imports.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Audio & Miscellaneous -->
+    <section id="audio" class="alt-bg">
+        <h2>Audio & Music Production</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>"Ghost in your stories"</h3>
+                <p>An original jazz-pop guitar track. Demonstrates understanding of rhythm, pacing, and audio composition—skills that directly translate to game sound design.</p>
+            </div>
         </div>
     </section>
 
