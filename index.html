@@ -29,7 +29,7 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; color: var(--text-white); }
+        h1, h2, h3, h4 { font-family: 'Rajdhani', sans-serif; color: var(--text-white); margin-top: 0; }
 
         /* Navigation */
         nav {
@@ -42,7 +42,7 @@
             z-index: 1000;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             border-bottom: 1px solid var(--bg-panel);
             backdrop-filter: blur(5px);
         }
@@ -53,12 +53,14 @@
             font-weight: 700;
             letter-spacing: 1px;
             transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         nav a:hover { color: var(--accent-bright); }
 
         /* General Section Formatting */
-        section { padding: 120px 10% 80px; min-height: auto; }
+        section { padding: 100px 10% 80px; min-height: auto; }
 
         .section-title {
             font-size: 2.5rem;
@@ -70,7 +72,7 @@
             padding-left: 15px;
         }
 
-        /* Hero Layout */
+        /* 1. Hero Layout */
         #hero {
             min-height: 100vh;
             display: flex;
@@ -82,23 +84,31 @@
         #hero h1 { font-size: 4.5rem; margin: 0; }
         #hero h2 { font-size: 2rem; color: var(--accent-semi); margin-top: 5px; }
         
-        .contact-pills { display: flex; gap: 15px; margin-top: 30px; }
-        .pill {
+        .btn {
+            display: inline-block;
             background-color: transparent;
-            border: 1px solid var(--accent-semi);
+            border: 2px solid var(--accent-bright);
             color: var(--accent-bright);
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 25px;
+            border-radius: 5px;
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            cursor: pointer;
         }
-        .pill:hover { background-color: var(--accent-semi); color: var(--bg-dark); }
+
+        .btn:hover {
+            background-color: var(--accent-bright);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+        }
 
         .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
         @media (max-width: 768px) { .split-section { grid-template-columns: 1fr; } }
 
-        /* Project Cards */
+        /* 2. Panels & Cards */
         .panel {
             background-color: var(--bg-panel);
             padding: 30px;
@@ -125,67 +135,67 @@
             margin: 5px 5px 0 0;
         }
 
+        /* 3. Resume & Skills Bar */
+        .skill-container { margin-bottom: 20px; }
+        .skill-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-weight: bold; color: var(--text-white); }
+        .skill-bar-bg { background-color: var(--bg-dark); height: 10px; border-radius: 5px; overflow: hidden; }
+        .skill-bar-fill { background-color: var(--accent-bright); height: 100%; border-radius: 5px; }
+
+        /* 4. Work Grid */
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
-
-        /* Specific Media Styling for Portfolio Items */
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin: 15px 0;
-            border: 1px solid #0b0c10;
-        }
-
-        /* Fake IDE Code Editor Styling */
+        .project-image { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; margin: 15px 0; border: 1px solid #0b0c10; }
+        
         .code-editor {
-            background-color: #0d1117;
-            border-radius: 5px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            overflow-x: auto;
+            background-color: #0d1117; border-radius: 5px; padding: 15px; margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; overflow-x: auto;
             border: 1px solid #30363d;
         }
-        .code-keyword { color: #ff7b72; }
-        .code-function { color: #d2a8ff; }
-        .code-string { color: #a5d6ff; }
-        .code-comment { color: #8b949e; font-style: italic; }
+        .code-keyword { color: #ff7b72; } .code-function { color: #d2a8ff; }
+        .code-string { color: #a5d6ff; } .code-comment { color: #8b949e; font-style: italic; }
 
+        /* 5. Contact Form */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--accent-semi); }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 10px; background-color: var(--bg-dark);
+            border: 1px solid var(--accent-semi); color: var(--text-white);
+            border-radius: 5px; font-family: 'Roboto', sans-serif; box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--accent-bright);
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#hero">Profile</a>
-        <a href="#about-academic">Background</a>
-        <a href="#work">Work Produced</a>
+        <a href="#background">Background</a>
+        <a href="#resume">Resume</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
     </nav>
 
     <section id="hero">
-        <h1>Your Name</h1>
+        <h1 style="font-size: 4.5rem; margin-bottom: 0;">Your Name</h1>
         <h2>Game Technology Developer</h2>
         <p style="max-width: 600px; font-size: 1.1rem; margin-top: 20px;">
             Bridging the gap between technical programming and creative design. Specializing in low-level graphics APIs, engine architecture, and 3D modeling.
         </p>
-        <div class="contact-pills">
-            <a href="mailto:your.email@example.com" class="pill">Email Me</a>
-            <a href="#" class="pill">GitHub</a>
-            <a href="#" class="pill">LinkedIn</a>
+        <div>
+            <a href="#work" class="btn">View My Work</a>
         </div>
     </section>
 
-    <section id="about-academic" style="background-color: #12151c;">
-        <h2 class="section-title">Background & Skills</h2>
+    <section id="background" style="background-color: #12151c;">
+        <h2 class="section-title">Background</h2>
         <div class="split-section">
-            
             <div class="panel">
-                <h3 style="font-size: 1.8rem; margin-top: 0;">Personal Qualities</h3>
+                <h3>Personal Qualities</h3>
                 <p>I thrive in environments that require both analytical problem-solving and artistic intuition. My workflow frequently moves across different disciplines, allowing me to understand the entire pipeline of digital creation.</p>
                 <div style="margin-top: 20px;">
                     <span class="tag">Problem Solving</span>
@@ -195,72 +205,119 @@
             </div>
 
             <div class="panel">
-                <h3 style="font-size: 1.8rem; margin-top: 0;">Academic History</h3>
+                <h3>Academic History</h3>
                 <div style="margin-bottom: 20px;">
                     <h4 style="color: var(--accent-bright); margin-bottom: 5px;">Diploma in Game Technology</h4>
                     <span style="color: var(--accent-semi); font-weight: bold;">UTeM (Universiti Teknikal Malaysia Melaka)</span>
                     <p style="font-size: 0.9rem; margin-top: 10px;">Focused heavily on Human-Computer Interaction, 3D Mathematics, and rendering techniques.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <section id="work">
+    <section id="resume">
+        <h2 class="section-title">Resume & Skills</h2>
+        <div class="split-section">
+            <div class="panel">
+                <h3>Technical Proficiencies</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 20px;">A visual representation of my core technical stack based on project experience.</p>
+                
+                <div class="skill-container">
+                    <div class="skill-header"><span>C# & Unity</span> <span>85%</span></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-header"><span>C++ & OpenGL</span> <span>75%</span></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-header"><span>Blender (3D Modeling)</span> <span>80%</span></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill-container">
+                    <div class="skill-header"><span>Web Dev (HTML/CSS/JS)</span> <span>70%</span></div>
+                    <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+                </div>
+            </div>
+
+            <div class="panel" style="justify-content: center; align-items: center; text-align: center;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--accent-bright)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="12" y2="18"></line>
+                    <line x1="15" y1="15" x2="12" y2="18"></line>
+                </svg>
+                <h3>Curriculum Vitae</h3>
+                <p>Download my full resume for a detailed breakdown of my freelance experience, academic projects, and software proficiencies.</p>
+                <a href="assets/YourName_Resume.pdf" target="_blank" class="btn">Download PDF</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" style="background-color: #12151c;">
         <h2 class="section-title">Work Produced</h2>
         <div class="work-grid">
-            
             <div class="panel">
                 <h3 style="color: var(--accent-bright); margin-bottom: 5px;">Catch Meow If You Can</h3>
                 <p style="font-size: 0.9rem; color: var(--accent-semi); margin-top: 0;">Unity Game Development</p>
-                
-                <img src="assets/images/catch_meow.jpg" alt="Catch Meow If You Can Gameplay" class="project-image">
-                
+                <img src="assets/images/catch_meow.jpg" alt="Catch Meow Gameplay" class="project-image">
                 <p>A dynamic game built in Unity. Focused on engaging player mechanics, level design, and fluid character controllers.</p>
-                <div style="margin-top: auto;">
-                    <span class="tag">C#</span> <span class="tag">Unity 3D</span>
-                </div>
+                <div style="margin-top: auto;"><span class="tag">C#</span> <span class="tag">Unity 3D</span></div>
             </div>
 
             <div class="panel">
                 <h3 style="color: var(--accent-bright); margin-bottom: 5px;">3D Asset Collection</h3>
                 <p style="font-size: 0.9rem; color: var(--accent-semi); margin-top: 0;">Viking Helmet & War Hammer</p>
-                
-                <model-viewer 
-                    src="assets/models/viking_helmet.glb" 
-                    alt="A 3D model of a Viking helmet" 
-                    camera-controls 
-                    auto-rotate
-                    style="width: 100%; height: 200px; background-color: #0b0c10; border-radius: 5px; margin: 15px 0;">
-                </model-viewer>
-
+                <model-viewer src="assets/models/viking_helmet.glb" alt="3D Viking Helmet" camera-controls auto-rotate style="width: 100%; height: 200px; background-color: #0b0c10; border-radius: 5px; margin: 15px 0;"></model-viewer>
                 <p>Hard-surface props modeled and textured for real-time engine integration. Maintained clean topology and strict loop cuts.</p>
-                <div style="margin-top: auto;">
-                    <span class="tag">Blender</span> <span class="tag">Texturing</span> <span class="tag">Topology</span>
-                </div>
+                <div style="margin-top: auto;"><span class="tag">Blender</span> <span class="tag">Texturing</span> <span class="tag">Topology</span></div>
             </div>
 
             <div class="panel">
                 <h3 style="color: var(--accent-bright); margin-bottom: 5px;">Invoice Generator</h3>
-                <p style="font-size: 0.9rem; color: var(--accent-semi); margin-top: 0;">Freelancer Tool Development</p>
-                
+                <p style="font-size: 0.9rem; color: var(--accent-semi); margin-top: 0;">Freelancer Tool</p>
                 <div class="code-editor">
-<span class="code-comment">// Generate Invoice PDF Function</span>
-<span class="code-keyword">function</span> <span class="code-function">createInvoice</span>(clientData) {
-    <span class="code-keyword">const</span> total = <span class="code-function">calculateTotal</span>(clientData.items);
-    <span class="code-keyword">if</span> (!clientData.name) {
-        <span class="code-keyword">return</span> <span class="code-string">"Error: Client name missing"</span>;
-    }
-    <span class="code-function">renderTemplate</span>(clientData, total);
+<span class="code-comment">// Generate Invoice PDF</span>
+<span class="code-keyword">function</span> <span class="code-function">createInvoice</span>(client) {
+    <span class="code-keyword">if</span> (!client.name) <span class="code-keyword">return</span> <span class="code-string">"Error"</span>;
+    <span class="code-function">renderTemplate</span>(client);
 }
                 </div>
-
-                <p>A practical workshop project designed to automate billing for freelance developers. Built with a focus on clean logic and user experience.</p>
-                <div style="margin-top: auto;">
-                    <span class="tag">Software Dev</span> <span class="tag">Workshop</span>
-                </div>
+                <p>A workshop project designed to automate billing for freelance developers. Built with a focus on clean logic and user experience.</p>
+                <div style="margin-top: auto;"><span class="tag">Software Dev</span> <span class="tag">Workshop</span></div>
             </div>
+        </div>
+    </section>
 
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="split-section">
+            <div class="panel">
+                <h3>Let's build something.</h3>
+                <p>I am currently open for internships, freelance projects, and collaborative game development opportunities.</p>
+                <p><strong>Email:</strong> your.email@example.com</p>
+                <p><strong>LinkedIn:</strong> linkedin.com/in/yourname</p>
+                <p><strong>GitHub:</strong> github.com/yourusername</p>
+            </div>
+            
+            <div class="panel">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
